@@ -1,14 +1,20 @@
 <template>
     <div class = "root">
         <div></div>
-            <a class = "TextMenu" >Игры</a>
-            <a class = "TextMenu">Дизайн</a>
+
+            <div class = "TextMenu" @click="$router.push('/Game')">Игры</div>
+            <div class = "TextMenu" @click="$router.push('/Build')">Дизайн</div>
     </div>
 </template>
 
 <script>
+
+
 export default{
     name: 'MyMenu',
+    comments:{
+
+    },
     data(){
         return{
             

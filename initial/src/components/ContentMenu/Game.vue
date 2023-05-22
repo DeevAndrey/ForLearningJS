@@ -1,12 +1,12 @@
 <template>
     <div class = "root">
-        123
+        firstPage
     </div>
 </template>
 
 <script>
 export default{
-    name: 'MyComponent',
+    name: 'GameXO',
     data(){
         return{
             
@@ -16,3 +16,10 @@ export default{
 
 </script>
 
+<style>
+.field{
+    grid-template-columns: 1fr,1fr,1fr;
+    height: 99%;
+    margin-Top: 10px
+}
+</style>

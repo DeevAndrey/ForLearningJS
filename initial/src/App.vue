@@ -3,7 +3,7 @@
   <div id="app" class = "grid">
     <MyHeader class="Header"/>
     <MyMenu class="Menu"/>
-      <div class = "MainContent"><MyComponent/></div>
+      <div class = "MainContent"><router-view></router-view></div>
   </div>
 </template>
 
@@ -58,7 +58,7 @@ html, body
   grid-template-rows: 5px 60px 60px;
 
 }
-.Menu a:hover{
+.Menu div:hover{
   background-color: #e2dddd;
 }
 .MainContent
