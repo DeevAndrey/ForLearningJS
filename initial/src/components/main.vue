@@ -1,15 +1,15 @@
 <template>
     <div class = "root">
-        Hello
+        123
     </div>
 </template>
 
 <script>
 export default{
-    name: 'myComponent',
+    name: 'MyComponent',
     data(){
         return{
-            text: 'asdsas'
+            
         }
     }
 }
