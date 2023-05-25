@@ -2,8 +2,8 @@
     <div class = "root">
         <div></div>
 
-            <div class = "TextMenu" @click="$router.push('/Game')">Игры</div>
-            <div class = "TextMenu" @click="$router.push('/Build')">Дизайн</div>
+            <div class = "TextMenu" @click="$router.push({name: 'Game'})">Игры</div>
+            <div class = "TextMenu" @click="$router.push({name: 'Build'})">Дизайн</div>
     </div>
 </template>
 
