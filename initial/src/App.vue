@@ -3,7 +3,9 @@
   <div id="app" class = "grid">
     <MyHeader class="Header"/>
     <MyMenu class="Menu"/>
-      <div class = "MainContent"><router-view></router-view></div>
+      <div class = "MainContent" :style="myCustomStyle">
+        <router-view/>
+      </div>
   </div>
 </template>
 
@@ -17,7 +19,13 @@ export default {
   components: {
     MyHeader,
     MyMenu
+  }, 
+  computed:{
+    myCustomStyle(){
+      return {'font-size': '10px'}
+    }
   }
+  
 }
 </script>
 
