@@ -94,7 +94,7 @@ export default{
         },
         buttonState(data)
         {
-            this.GameButtons[data.id].state =data.state
+            this.GameButtons[data[0]].state =data[1]
             this.CheckWinner()  
         },
         CheckWinner()
@@ -113,6 +113,10 @@ export default{
         closePopUp()
         {
             this.PopUpVisible = false
+            for (let i =0;i<9;i++)
+            {
+                this.GameButtons[i].state = null
+            }
         }
     }
 
