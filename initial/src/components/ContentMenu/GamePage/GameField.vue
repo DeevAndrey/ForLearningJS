@@ -2,7 +2,7 @@
     <div class = "root">
         <div class ="field">
             
-            <GameButton v-for="button in GameButtons"
+            <GameButton v-for="button in BUTTONS"
             :key="button.id"
             :player="player"
             :PopUpVisible="PopUpVisible"
@@ -21,6 +21,7 @@
 
 import GameButton from './GameButton.vue';
 import g_PopUp from './Game_PopUp/G_PopUp.vue';
+import { mapActions,mapGetters } from 'vuex';
 
 export default{
     name: 'GameXO', 
@@ -39,45 +40,6 @@ export default{
                 [0,4,8],
                 [2,4,6]
             ],
-            GameButtons:
-            [
-            {
-                id: 0,
-                state: null
-            },
-            {
-                id: 1,
-                state: null
-            },
-            {
-                id: 2,
-                state: null
-            },
-            {
-                id: 3,
-                state: null
-            },
-            {
-                id: 4,
-                state: null
-            },
-            {
-                id: 5,
-                state: null
-            },
-            {
-                id: 6,
-                state: null
-            },
-            {
-                id: 7,
-                state: null
-            },
-            {
-                id: 8,
-                state: null
-            }
-            ],
             player: true}
     } ,
     components:
@@ -87,6 +49,11 @@ export default{
     },
     methods: 
     {
+        ...mapActions(
+            [
+                'GET_BUTTONS_API'
+            ]
+        ),
         showPlayer(data)
         {   
             this.player = data == true? false:true
@@ -94,18 +61,18 @@ export default{
         },
         buttonState(data)
         {
-            this.GameButtons[data[0]].state =data[1]
+            this.BUTTONS[data[0]].state =data[1]
             this.CheckWinner()  
         },
         CheckWinner()
         {
             for (let i=0;i<8;i++)
             {   
-                if (this.GameButtons[this.Winner[i][0]].state == this.GameButtons[this.Winner[i][1]].state &&  
-                this.GameButtons[this.Winner[i][0]].state == this.GameButtons[this.Winner[i][2]].state && 
-                this.GameButtons[this.Winner[i][0]].state != null)
+                if (this.BUTTONS[this.Winner[i][0]].state == this.BUTTONS[this.Winner[i][1]].state &&  
+                this.BUTTONS[this.Winner[i][0]].state == this.BUTTONS[this.Winner[i][2]].state && 
+                this.BUTTONS[this.Winner[i][0]].state != null)
                 {
-                    console.log('Победил ', this.GameButtons[this.Winner[i][0]].state)
+                    console.log('Победил ', this.BUTTONS[this.Winner[i][0]].state)
                     this.PopUpVisible = true
                 }
             }
@@ -115,9 +82,18 @@ export default{
             this.PopUpVisible = false
             for (let i =0;i<9;i++)
             {
-                this.GameButtons[i].state = null
+                this.BUTTONS[i].state = null
             }
         }
+    },
+    mounted(){
+        this.GET_BUTTONS_API()
+    },
+    computed:
+    {
+        ...mapGetters([
+            'BUTTONS'
+        ])
     }
 
 }
