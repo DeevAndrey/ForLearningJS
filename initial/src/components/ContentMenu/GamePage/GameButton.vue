@@ -1,6 +1,6 @@
 <template>
     <div class = "root">
-      <button v-on:click=" NewState() ">{{state}}</button>
+      <button v-on:click=" NewState() ">{{local_button_data.state}}</button>
     </div>
 </template>
 
@@ -10,27 +10,46 @@ export default{
     props:{
         player:{
             type: Boolean,
-
+            default(){return true}
+        },
+        button_data:{
+            type: Object,
+            default(){return null}
+        },
+        PopUpVisible:
+        {
+            type: Boolean
         }
     },
     data(){
         return{
-            state: null
+            local_button_data:
+            {
+                id:this.button_data.id,
+                state: this.button_data.state
+            }
+
         }
     },
     methods: 
     {
         NewState()
         {
-            if (this.player == true && this.state == null)
+            console.log(this.PopUpVisible)
+            if (this.player == true && this.local_button_data.state == null)
             {
-                this.state = 'O'
+                this.local_button_data.state = 'X'
                 this.$emit('sendPlayer',this.player)
             }
-            else if (this.player == false && this.state == null)
+            else if (this.player == false && this.local_button_data.state == null)
             {
-                this.state = 'X' 
+                this.local_button_data.state = 'O' 
                 this.$emit('sendPlayer',this.player)
+            }
+            this.$emit('buttonState',this.local_button_data)
+            if (this.PopUpVisible == true)
+            {
+                this.local_button_data.state = null
             }
         }
     }
