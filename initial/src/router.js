@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import GameXO from './components/ContentMenu/GamePage/GameField'
-import BuildWell from './components/ContentMenu/BuildWell'
+import ListUsers from './components/ContentMenu/ListUsers'
 
 Vue.use(Router)
 
@@ -18,9 +18,9 @@ let router = new Router(
                 component: GameXO
             },
             {
-                path: '/Build',
-                name: 'Build',
-                component: BuildWell
+                path: '/ListUsers',
+                name: 'ListUsers',
+                component: ListUsers
             }
 
         ]
