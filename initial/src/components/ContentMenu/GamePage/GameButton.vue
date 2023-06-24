@@ -1,6 +1,9 @@
 <template>
     <div class = "root">
-      <button v-on:click=" NewState() ">{{button_data.state}}</button>
+        <button class ="GameButton" 
+            :disabled="PopUpVisible" 
+            v-on:click=" NewState() ">{{button_data.state}}
+        </button>
     </div>
 </template>
 
@@ -9,8 +12,7 @@ export default{
     name: 'GameButton',
     props:{
         player:{
-            type: Boolean,
-            default(){return true}
+            type: Boolean
         },
         button_data:{
             type: Object,
@@ -43,10 +45,10 @@ export default{
 </script>
 
 <style>
-button{
+.GameButton{
     height: 99%;
     width: 99%; 
-    font-size: 46px;
+    font-size: 60px;
 }
 
 </style>

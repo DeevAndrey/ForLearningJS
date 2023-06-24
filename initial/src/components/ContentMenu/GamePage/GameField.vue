@@ -13,7 +13,10 @@
         </div>
         <g_PopUp class="modal" 
         v-if="PopUpVisible"
-        @closePop = "closePopUp()"/>
+        @closePop = "closePopUp()"
+        @UserName = "UserName"
+        />
+        
     </div>
 </template>
 
@@ -40,6 +43,14 @@ export default{
                 [0,4,8],
                 [2,4,6]
             ],
+            user:
+            [
+                {
+                    id: 0,
+                    name: "empty"
+                }
+
+            ],
             player: true}
     } ,
     components:
@@ -51,7 +62,9 @@ export default{
     {
         ...mapActions(
             [
-                'GET_BUTTONS_API'
+                'GET_BUTTONS_API',
+                'GET_USERS_API',
+                'ADD_USER'
             ]
         ),
         showPlayer(data)
@@ -84,15 +97,24 @@ export default{
             {
                 this.BUTTONS[i].state = null
             }
+        },
+        UserName(data)
+        {
+            this.user.name = data
+            this.user.id = 4
+            this.ADD_USER( this.user)
+            console.log(this.user)
         }
     },
     mounted(){
-        this.GET_BUTTONS_API()
+        this.GET_BUTTONS_API(),
+        this.GET_USERS_API()
     },
     computed:
     {
         ...mapGetters([
-            'BUTTONS'
+            'BUTTONS',
+            'USERS'
         ])
     }
 
