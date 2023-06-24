@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import GameXO from './components/ContentMenu/GamePage/GameField'
-import ListUsers from './components/ContentMenu/ListUsers'
+import TableScore from './components/ContentMenu/Table/TableScore'
 
 Vue.use(Router)
 
@@ -18,9 +18,9 @@ let router = new Router(
                 component: GameXO
             },
             {
-                path: '/ListUsers',
-                name: 'ListUsers',
-                component: ListUsers
+                path: '/TableScore',
+                name: 'TableScore',
+                component: TableScore
             }
 
         ]

@@ -75,8 +75,5 @@ html, body
   display: grid;
   background-color: #ffffff;
 }
-
-
-
 </style>
 
