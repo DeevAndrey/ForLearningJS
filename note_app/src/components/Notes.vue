@@ -2,7 +2,13 @@
     <div class="notes">
         <div class="note" :class="{full:!grid}" v-for="(note,index) in notes" :key="index">
             <div class="note-header">
-                <p>{{ note.title }}</p>
+                <div class="note-title">
+                    <p>{{ note.title }}</p>
+                        <svg >
+                            <circle :style="{fill: note.priority}" cx="10" cy="10" r="5" stroke="gray" stroke-width="1"/>
+                        </svg>
+                </div>
+                
                 <p style="cursor: pointer;" @click=removeNote(index)>x</p>
             </div>
             <div class="note-body">
@@ -28,7 +34,7 @@ export default{
     },
     methods:{
         removeNote(index){
-            console.log(`Node id ${index} remove`)
+            console.log(`Node id ${index} remove` )
             this.$emit('remove',index)
         }
     }
@@ -42,6 +48,15 @@ export default{
     justify-content: space-between;
     flex-wrap:wrap;
     padding: 40px 0;
+}
+.note.highPriority
+{
+    fill: red;
+}
+.note-title{
+    display:  flex;
+    align-items: flex-start;
+    height: min-content;
 }
 .note{
     width: 48%;
@@ -72,6 +87,7 @@ export default{
         &.active{
             color:rgb(119, 189, 13)
         }
+        height: 40px;
     }
 }
 .note-body{

@@ -51,30 +51,44 @@ export default {
       message: null,
       note:{
         title:'',
-        description:''
+        description:'',
+        priority: '',
       },
       notes: [
         {
           title: 'First Note',
           description: 'Description for first note',
-          date: new Date(Date.now()).toLocaleString()
+          date: new Date(Date.now()).toLocaleString(),
+          priority: "green"
         },
         {
           title: 'Second Note',
           description: 'Description for second note',
-          date: new Date(Date.now()).toLocaleString()
+          date: new Date(Date.now()).toLocaleString(),
+          priority: "yellow"
         },
         {
           title: 'Thrid Note',
           description: 'Description for third note',
-          date: new Date(Date.now()).toLocaleString()
+          date: new Date(Date.now()).toLocaleString(),
+          priority: "red"
         }
       ]
     }
   },
   methods: {
     addNote(){
-      let {title,description} = this.note
+      let {title,description,priority} = this.note
+      if (priority == "high priority"){
+        priority = 'red'
+        console.log('red')
+      }else if (priority == "middle priority"){
+        priority = 'yellow'
+        console.log('yellow')
+      }else {
+        priority = 'green'
+        console.log('red')
+      }
       if (title ===''){
         this.message = 'title cant be empty!'
         return false;
@@ -83,7 +97,8 @@ export default {
       this.notes.push({
         title,
         description,
-        date: Date(Date.now()).toLocaleString()})
+        date: Date(Date.now()).toLocaleString(),
+        priority})
     },
     removeNote(index){
       this.notes.splice(index,1)
