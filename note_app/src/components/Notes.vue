@@ -3,7 +3,12 @@
         <div class="note" :class="{full:!grid}" v-for="(note,index) in notes" :key="index">
             <div class="note-header">
                 <div class="note-title">
-                    <p>{{ note.title }}</p>
+                    <input class="input-edit" 
+                    v-show="note.edit" 
+                    v-model="value" 
+                    @change="sendEdit(index)"
+                    ref="title-input">
+                    <p v-show="!note.edit" @dblclick="editNoteStatus(index)">{{ note.title }}</p>
                         <svg >
                             <circle :style="{fill: note.priority}" cx="10" cy="10" r="5" stroke="gray" stroke-width="1"/>
                         </svg>
@@ -22,6 +27,11 @@
 
 <script>
 export default{
+    data(){
+        return{
+            value: ''
+        }
+    },
     props:{
         notes:{
             type: Array,
@@ -36,6 +46,20 @@ export default{
         removeNote(index){
             console.log(`Node id ${index} remove` )
             this.$emit('remove',index)
+        },
+        editNoteStatus(index){
+            this.value=this.notes[index].title
+            this.$emit('edit',index,'Title')
+        },
+        sendEdit(index){
+            console.log('Exit')
+            this.$emit('sendEdit',index,this.value)
+        }
+    },
+    watch:{
+        EditTitle(val){
+            this.$emit('remove',index)
+            console.log(val)
         }
     }
 }
@@ -99,5 +123,16 @@ export default{
         font-size: 14px;
         color: gray
     }
+}
+.input-edit{
+border-radius: 0px;
+padding: 0px;
+height: min-content;
+color: blue;
+margin-bottom: 0px;
+font-size: 22px;
+}
+.input-edit:active{
+    border-color: greenyellow;
 }
 </style>

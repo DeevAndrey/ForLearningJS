@@ -22,7 +22,7 @@
                   </div>
                 </div>
                 
-              <notes :notes="notesFilter" :grid="grid"  @remove="removeNote"
+              <notes :notes="notesFilter" :grid="grid"  @remove="removeNote" @edit="editNoteStatus" @sendEdit="newData"
               />
             </div>
           </section>
@@ -59,19 +59,22 @@ export default {
           title: 'First Note',
           description: 'Description for first note',
           date: new Date(Date.now()).toLocaleString(),
-          priority: "green"
+          priority: "green",
+          edit: false
         },
         {
           title: 'Second Note',
           description: 'Description for second note',
           date: new Date(Date.now()).toLocaleString(),
-          priority: "yellow"
+          priority: "yellow",
+          edit: false
         },
         {
           title: 'Thrid Note',
           description: 'Description for third note',
           date: new Date(Date.now()).toLocaleString(),
-          priority: "red"
+          priority: "red",
+          edit: false
         }
       ]
     }
@@ -102,6 +105,16 @@ export default {
     },
     removeNote(index){
       this.notes.splice(index,1)
+    },
+    editNoteStatus(index,object){
+      if (object == 'Title'){
+        this.notes[index].edit = true
+      }
+    },
+    newData(index,data){
+      console.log(data)
+      this.notes[index].title=data
+      this.notes[index].edit = false
     }
   },
   computed:{
